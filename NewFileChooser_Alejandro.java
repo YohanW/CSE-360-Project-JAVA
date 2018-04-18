@@ -19,7 +19,7 @@ public class NewFileChooser_Alejandro extends javax.swing.JFrame implements Acti
     /**
      * Creates new form NewFileChooser
      */
-    public NewFileChooser() {
+    public NewFileChooser_Alejandro() {
         initComponents();
     }
 
