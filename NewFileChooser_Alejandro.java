@@ -11,7 +11,7 @@ import java.awt.event.ActionListener;
  *
  * @author sakshamsaraswat
  */
-public class NewFileChooser extends javax.swing.JFrame implements ActionListener {
+public class NewFileChooser_Alejandro extends javax.swing.JFrame implements ActionListener {
 	String justifier = "left";
 	String spacing = "Single";
 	int lineLength = 89;
