@@ -18,7 +18,7 @@ public class textAnalyzer {
         return c;
     }
 
-    public static void analyzeText(String inputPath, String outputPath, String justification, int numberBlankLines) throws Exception {
+    public static void analyzeText(String inputPath, String outputPath, String justification, int numberBlankLines, int numberOfCharactersPerLine) throws Exception {
         int numWordProcessed = 0;           // ok
         int numBlankLinesRemoved = 0;       // ok
         int out_numLines = 0;               // ok
@@ -90,14 +90,14 @@ public class textAnalyzer {
         for(int i=0; i<wordList.length; i++) {
             if(col==0) {
                 numberOfRow++;
-                if(wordList[i].length() >= 79) {
+                if(wordList[i].length() >= numberOfCharactersPerLine-1) {
                     wordMatrix[row][col] = wordList[i];
-                    spaceCount[row] = Math.max(0, 80-wordList[i].length());
+                    spaceCount[row] = Math.max(0, numberOfCharactersPerLine-wordList[i].length());
                     wordsCount[row] = 1;
                     row++;
                 } else {
                     wordMatrix[row][col] = wordList[i];
-                    spaceCount[row] = 80-wordList[i].length();
+                    spaceCount[row] = numberOfCharactersPerLine-wordList[i].length();
                     wordsCount[row] = 1;
                     col++;
                 }
@@ -106,14 +106,14 @@ public class textAnalyzer {
                     row++;
                     col = 0;
                     numberOfRow++;
-                    if(wordList[i].length() >= 79) {
+                    if(wordList[i].length() >= numberOfCharactersPerLine-1) {
                         wordMatrix[row][col] = wordList[i];
                         spaceCount[row] = Math.max(0, 80-wordList[i].length());
                         wordsCount[row] = 1;
                         row++;
                     } else {
                         wordMatrix[row][col] = wordList[i];
-                        spaceCount[row] = 80-wordList[i].length();
+                        spaceCount[row] = numberOfCharactersPerLine-wordList[i].length();
                         wordsCount[row] = 1;
                         col++;
                     }
@@ -150,7 +150,7 @@ public class textAnalyzer {
                         bw.append(" ");
                     }
                 }
-                for(int j=0; j<40; j++) {
+                for(int j=0; j<numberOfCharactersPerLine/2; j++) {
                     if(wordMatrix[i][j] == null) {
                         break;
                     }
@@ -213,7 +213,7 @@ public class textAnalyzer {
                             bw.append(wordMatrix[i][j]);
                         }
                     }
-                    out_avrgLineLength += 80;
+                    out_avrgLineLength += numberOfCharactersPerLine;
                 }
             }
         } else {
@@ -241,8 +241,9 @@ public class textAnalyzer {
 
     public static void main(String[] args) throws Exception {
         int numberBlankLines = Integer.parseInt(args[3]);
+        int numberOfCharactersPerLine = Integer.parseInt(args[4]);
         // analyzeText(inputPath, outputPath, justification, numberBlankLines)
-        analyzeText(args[0], args[1], args[2], numberBlankLines);
+        analyzeText(args[0], args[1], args[2], numberBlankLines, numberOfCharactersPerLine);
     }
 }
 
