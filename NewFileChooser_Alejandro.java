@@ -13,8 +13,8 @@ import java.awt.event.ActionListener;
  */
 public class NewFileChooser_Alejandro extends javax.swing.JFrame implements ActionListener {
 	String justifier = "left";
-	String spacing = "Single";
-	int lineLength = 89;
+	int spacing = 1;
+	int lineLength = 80;
 
     /**
      * Creates new form NewFileChooser
@@ -338,10 +338,10 @@ public class NewFileChooser_Alejandro extends javax.swing.JFrame implements Acti
 			lineLength = Integer.parseInt(word);
 		}
 		if(word.equals("Single Space")) {
-			spacing = "Single";
+			spacing = 1;
 		}
 		else if(word.equals("Double Space")) {
-			spacing = "Double";
+			spacing = 2;
 		}
 	}
 }
